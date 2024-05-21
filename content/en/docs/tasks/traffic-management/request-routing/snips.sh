@@ -27,7 +27,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 
 snip_route_to_version_1_2() {
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: reviews
@@ -49,7 +49,7 @@ kubectl get virtualservices -o yaml
 }
 
 ! IFS=$'\n' read -r -d '' snip_route_to_version_1_3_out <<\ENDSNIP
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   ...
   spec:
@@ -60,7 +60,7 @@ kubectl get virtualservices -o yaml
       - destination:
           host: details
           subset: v1
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   ...
   spec:
@@ -71,7 +71,7 @@ kubectl get virtualservices -o yaml
       - destination:
           host: productpage
           subset: v1
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   ...
   spec:
@@ -82,7 +82,7 @@ kubectl get virtualservices -o yaml
       - destination:
           host: ratings
           subset: v1
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   ...
   spec:
@@ -154,7 +154,7 @@ kubectl get virtualservice reviews -o yaml
 }
 
 ! IFS=$'\n' read -r -d '' snip_route_based_on_user_identity_2_out <<\ENDSNIP
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 ...
 spec:
@@ -177,7 +177,7 @@ ENDSNIP
 
 snip_route_based_on_user_identity_3() {
 kubectl apply -f - <<EOF
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: reviews
